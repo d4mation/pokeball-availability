@@ -12,4 +12,4 @@ $( document ).foundation();
 
 import './sass/app.scss';
 
-import FormContainer from "./js/components/container/FormContainer.jsx";
+import PokemonList from "./js/components/container/PokemonList.jsx";
