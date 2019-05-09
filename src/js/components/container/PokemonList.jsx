@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
+import PokemonFilter from '../presentational/PokemonFilter.jsx';
 import PokeballFilter from '../presentational/PokeballFilter.jsx';
 import PokemonEntry from "../presentational/PokemonEntry.jsx";
 
@@ -40,14 +41,17 @@ class PokemonList extends Component {
     super();
 
     this.state = {
-      pokeball: []
+      pokeball: [],
+      search: '',
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleArrayChange = this.handleArrayChange.bind( this );
+
+    this.handleStringChange = this.handleStringChange.bind( this );
 
   }
 
-  handleChange( event ) {
+  handleArrayChange( event ) {
     
     const options = this.state[ event.target.getAttribute( 'name' ) ];
     let index;
@@ -66,11 +70,26 @@ class PokemonList extends Component {
 
   }
 
+  handleStringChange( event ) {
+
+    // update the state with the new array of options
+    this.setState( { [ event.target.getAttribute( 'name' ) ]: event.target.value } );
+
+  }
+
   render() {
 
-    const { pokeball } = this.state;
+    const { pokeball, search } = this.state;
 
     var filteredPokemonData = pokemonData.filter(
+      ( pokemon ) => {
+
+        return ( pokemon.species.toLowerCase().indexOf( search.toLowerCase() ) >= 0 ) || ( pokemon.dexNumber.toString().indexOf( search ) >= 0 );
+
+      }
+    );
+    
+    filteredPokemonData = filteredPokemonData.filter(
       ( pokemon ) => {
 
         if ( pokeball.length == 0 ) {
@@ -118,8 +137,9 @@ class PokemonList extends Component {
 
       <div id="pokemon-list">
         { pokeballs.map( ( pokeball ) => {
-          return <PokeballFilter pokeball={pokeball} key={pokeball + '-filter'} onChange={this.handleChange} />
+          return <PokeballFilter pokeball={pokeball} key={pokeball + '-filter'} onChange={this.handleArrayChange} />
         } ) }
+        <PokemonFilter search={search} onChange={this.handleStringChange} />
         <table>
           <tbody>
             { filteredPokemonData.map( ( pokemon ) => {
