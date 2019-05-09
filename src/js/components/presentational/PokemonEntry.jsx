@@ -41,7 +41,7 @@ const PokemonEntry = ({ pokemon, pokeballs }) => (
     </td>
       { pokeballs.map( ( pokeball ) => {
 
-        var count = 0;
+        var available = false;
         for ( var gameIndex in gameOrder ) {
 
           let game = gameOrder[ gameIndex ];
@@ -49,12 +49,13 @@ const PokemonEntry = ({ pokemon, pokeballs }) => (
           if ( typeof pokemon[ game ] !== 'undefined' && 
             typeof pokemon[ game ].pokeballs !== 'undefined' && 
             pokemon[ game ].pokeballs.indexOf( pokeball ) >= 0 ) {
-              count++;
+              available = true;
+              break;
           }
 
         }
 
-        return <td className={pokeball + ' pokeball-available'} key={pokemon.dexNumber + '-' + pokeball}>{ ( count > 0 ) ? 1 : 0 }</td>
+        return <td className={pokeball + ' pokeball-available'} key={pokemon.dexNumber + '-' + pokeball}>{ ( available ) ? 1 : 0 }</td>
 
       } ) }
   </tr>
