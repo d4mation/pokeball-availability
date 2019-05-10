@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import PokemonFilter from '../presentational/PokemonFilter.jsx';
 import PokeballFilter from '../presentational/PokeballFilter.jsx';
 import PokemonEntry from "../presentational/PokemonEntry.jsx";
+import PokemonGameData from "../presentational/PokemonGameData.jsx";
+import Modal from "react-foundation-modal";
 
 import pokemonData from '../../pokeball-availability.json';
 import { type } from "os";
@@ -43,11 +45,17 @@ class PokemonList extends Component {
     this.state = {
       pokeball: [],
       search: '',
+      modalIsOpen: false,
+      viewedPokemon: 0,
     };
 
     this.handleArrayChange = this.handleArrayChange.bind( this );
 
     this.handleStringChange = this.handleStringChange.bind( this );
+
+    this.showModal = this.showModal.bind( this );
+
+    this.updateViewedPokemon = this.updateViewedPokemon.bind( this );
 
   }
 
@@ -72,14 +80,29 @@ class PokemonList extends Component {
 
   handleStringChange( event ) {
 
-    // update the state with the new array of options
     this.setState( { [ event.target.getAttribute( 'name' ) ]: event.target.value } );
+
+  }
+
+  showModal( state ) {
+
+    this.setState( { ['modalIsOpen']: state } );
+
+  }
+
+  updateViewedPokemon( event ) {
+
+    event.preventDefault();
+
+    this.setState( { ['viewedPokemon']: event.target.getAttribute( 'href' ) } );
+
+    this.showModal( true );
 
   }
 
   render() {
 
-    const { pokeball, search } = this.state;
+    const { pokeball, search, viewedPokemon } = this.state;
 
     var filteredPokemonData = pokemonData.filter(
       ( pokemon ) => {
@@ -133,6 +156,15 @@ class PokemonList extends Component {
       }
     );
 
+    var pokemon = {
+      dexNumber: 0,
+      species: 'MissingNo.',
+    };
+
+    if ( typeof pokemonData[ viewedPokemon - 1 ] !== 'undefined' ) {
+      pokemon = pokemonData[ viewedPokemon - 1 ];
+    }
+
     return (
 
       <div id="pokemon-list">
@@ -143,10 +175,22 @@ class PokemonList extends Component {
         <table>
           <tbody>
             { filteredPokemonData.map( ( pokemon ) => {
-              return <PokemonEntry pokemon={pokemon} key={pokemon.dexNumber} pokeballs={pokeballs} />
+              return <PokemonEntry pokemon={pokemon} key={pokemon.dexNumber} pokeballs={pokeballs} onClick={this.updateViewedPokemon} />
             } ) }
           </tbody>
         </table>
+        <Modal 
+          open={this.state.modalIsOpen}
+          closeModal={this.showModal}
+          isModal={true}
+          size="large"
+          overlayStyle={{'backgroundColor': 'rgba(33,10,10,.45)'}} >
+          <h1>#{ pokemon.dexNumber } { pokemon.species }</h1>
+          <PokemonGameData pokemon={pokemon} pokeballs={pokeballs} />
+          <button className="button" type="button" onClick={() => this.showModal(false)} >
+              Close
+          </button>
+        </Modal>
       </div>
     );
   }

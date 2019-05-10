@@ -32,12 +32,12 @@ const gameOrder = [
   'letsgoeevee',
 ];
 
-const PokemonEntry = ({ pokemon, pokeballs }) => (
+const PokemonEntry = ({ pokemon, pokeballs, onClick }) => (
   <tr className="pokemon-entry" id={'pokemon-' + pokemon.dexNumber}>
     <td>
-      <span>
+      <a onClick={onClick} href={pokemon.dexNumber}>
         #{pokemon.dexNumber} {pokemon.species}
-      </span>
+      </a>
     </td>
       { pokeballs.map( ( pokeball ) => {
 
