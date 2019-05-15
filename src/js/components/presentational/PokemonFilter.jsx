@@ -9,7 +9,7 @@ const PokemonFilter = ({ search, onChange }) => (
 );
 
 PokemonFilter.propTypes = {
-search: PropTypes.string.isRequired,
+    search: PropTypes.string.isRequired,
 };
 
 export default PokemonFilter;

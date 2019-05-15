@@ -33,51 +33,62 @@ const gameOrder = [
   'letsgoeevee',
 ];
 
-const PokemonGameData = ({ pokemon, pokeballs }) => (
-    <table>
-        <tbody>
-            { gameOrder.map( ( game ) => {
+const PokemonGameData = ({ tree, pokeballs }) => (
 
-                return <tr className="pokemon-game-data" id={game + '-' + pokemon.dexNumber} key={game + '-' + pokemon.dexNumber}>
+    <div className="outer-container" key={'pokemon-game-data-outer-container-' + tree[0].dexNumber}>
 
-                    <td>{game}</td>
+        { tree.map( ( pokemon ) => {
 
-                    { pokeballs.map( ( pokeball ) => {
+            return <div className="inner-container" key={'pokemon-game-data-inner-container-' + pokemon.dexNumber}><h1>#{pokemon.dexNumber} {pokemon.species}</h1>
 
-                        var catchable = false;
+            <table>
+                <tbody>
+                    { gameOrder.map( ( game ) => {
 
-                        if ( typeof pokemon[ game ] !== 'undefined' && 
-                        typeof pokemon[ game ].pokeballs !== 'undefined' && 
-                        pokemon[ game ].pokeballs.indexOf( pokeball ) >= 0 ) {
-                            catchable = true;
-                        }
+                        return <tr className="pokemon-game-data" id={game + '-' + pokemon.dexNumber} key={game + '-' + pokemon.dexNumber}>
 
-                        var notes = false
+                            <td>{game}</td>
 
-                        if ( typeof pokemon[ game ] !== 'undefined' && 
-                        typeof pokemon[ game ].notes !== 'undefined' ) {
-                            notes = pokemon[ game ].notes;
-                        }
+                            { pokeballs.map( ( pokeball ) => {
 
-                        return <td key={game + '-' + pokemon.dexNumber + '-' + pokeball}>
+                                var catchable = false;
 
-                            { ( notes ) ? <span data-tip data-for={game + '-' + pokemon.dexNumber + '-notes'}>{ ( catchable ) ? 1 + '*' : 0 }</span> : ( catchable ) ? 1 : 0 }
+                                if ( typeof pokemon[ game ] !== 'undefined' && 
+                                typeof pokemon[ game ].pokeballs !== 'undefined' && 
+                                pokemon[ game ].pokeballs.indexOf( pokeball ) >= 0 ) {
+                                    catchable = true;
+                                }
 
-                            { ( notes ) ? <ToolTip id={game + '-' + pokemon.dexNumber + '-notes'}><span>{pokemon[game].notes}</span></ToolTip> : '' }
-                            
-                        </td>
+                                var notes = false
+
+                                if ( typeof pokemon[ game ] !== 'undefined' && 
+                                typeof pokemon[ game ].notes !== 'undefined' ) {
+                                    notes = pokemon[ game ].notes;
+                                }
+
+                                return <td key={game + '-' + pokemon.dexNumber + '-' + pokeball}>
+
+                                    { ( notes ) ? <span data-tip data-for={game + '-' + pokemon.dexNumber + '-notes'}>{ ( catchable ) ? 1 + '*' : 0 }</span> : ( catchable ) ? 1 : 0 }
+
+                                    { ( notes ) ? <ToolTip id={game + '-' + pokemon.dexNumber + '-notes'}><span>{pokemon[game].notes}</span></ToolTip> : '' }
+                                    
+                                </td>
+
+                            } ) }
+
+                        </tr>
 
                     } ) }
+                </tbody>
+            </table></div>
 
-                </tr>
+        } ) }
 
-            } ) }
-        </tbody>
-    </table>
+    </div>
 );
 
 PokemonGameData.propTypes = {
-  pokemon: PropTypes.object.isRequired,
+  tree: PropTypes.array.isRequired,
 };
 
 export default PokemonGameData;

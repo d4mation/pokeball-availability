@@ -105,15 +105,23 @@ class PokemonList extends Component {
     const { pokeball, search, viewedPokemon } = this.state;
 
     var filteredPokemonData = pokemonData.filter(
-      ( pokemon ) => {
+      ( tree ) => {
 
-        return ( pokemon.species.toLowerCase().indexOf( search.toLowerCase() ) >= 0 ) || ( pokemon.dexNumber.toString().indexOf( search ) >= 0 );
+        let foundName = tree.find( ( pokemon ) => {
+          return pokemon.species.toLowerCase().indexOf( search.toLowerCase() ) >= 0;
+        } );
+
+        let foundDexNumber = tree.find( ( pokemon ) => {
+          return pokemon.dexNumber.toString().indexOf( search ) >= 0;
+        } );
+
+        return ( foundName || foundDexNumber );
 
       }
     );
     
     filteredPokemonData = filteredPokemonData.filter(
-      ( pokemon ) => {
+      ( tree ) => {
 
         if ( pokeball.length == 0 ) {
           return true;
@@ -121,25 +129,32 @@ class PokemonList extends Component {
         else {
 
           var found = [];
-          for ( var gameIndex in pokemon ) {
 
-            let game = pokemon[ gameIndex ];
-            
-            if ( typeof pokemon[ gameIndex ] !== 'undefined' && 
-              pokemon[ gameIndex ] !== false && 
-              typeof pokemon[ gameIndex ].pokeballs !== 'undefined' ) {
+          for ( var pokemonIndex in tree ) {
 
-                let matches = pokemon[ gameIndex ].pokeballs.filter( value => pokeball.includes( value ) );
+            var pokemon = tree[ pokemonIndex ];
 
-                if ( matches.length > 0 ) {
-                  found = found.concat( matches.filter(
-                    item => found.indexOf( item ) < 0
-                  ) );
-                }
+            for ( var gameIndex in pokemon ) {
 
-                if ( found.length == pokeball.length ) {
-                  break;
-                }
+              let game = pokemon[ gameIndex ];
+              
+              if ( typeof pokemon[ gameIndex ] !== 'undefined' && 
+                pokemon[ gameIndex ] !== false && 
+                typeof pokemon[ gameIndex ].pokeballs !== 'undefined' ) {
+
+                  let matches = pokemon[ gameIndex ].pokeballs.filter( value => pokeball.includes( value ) );
+
+                  if ( matches.length > 0 ) {
+                    found = found.concat( matches.filter(
+                      item => found.indexOf( item ) < 0
+                    ) );
+                  }
+
+                  if ( found.length == pokeball.length ) {
+                    break;
+                  }
+
+              }
 
             }
 
@@ -156,13 +171,27 @@ class PokemonList extends Component {
       }
     );
 
-    var pokemon = {
-      dexNumber: 0,
-      species: 'MissingNo.',
-    };
+    var defaultEvolutionTree = [
+        {
+          dexNumber: 0,
+          species: 'MissingNo.',
+        }
+    ];
 
-    if ( typeof pokemonData[ viewedPokemon - 1 ] !== 'undefined' ) {
-      pokemon = pokemonData[ viewedPokemon - 1 ];
+    var evolutionTree = pokemonData.find( ( tree, index ) => {
+
+      let found = tree.find( ( pokemon ) => {
+        return pokemon.dexNumber.toString() == viewedPokemon;
+      } );
+
+      if ( found ) return tree;
+
+      return false;
+
+    } );
+
+    if ( typeof evolutionTree == 'undefined' ) {
+      evolutionTree = defaultEvolutionTree;
     }
 
     return (
@@ -174,8 +203,8 @@ class PokemonList extends Component {
         <PokemonFilter search={search} onChange={this.handleStringChange} />
         <table>
           <tbody>
-            { filteredPokemonData.map( ( pokemon ) => {
-              return <PokemonEntry pokemon={pokemon} key={pokemon.dexNumber} pokeballs={pokeballs} onClick={this.updateViewedPokemon} />
+            { filteredPokemonData.map( ( tree, index ) => {
+              return <PokemonEntry tree={tree} key={'main-view-index-' + index} pokeballs={pokeballs} onClick={this.updateViewedPokemon} />
             } ) }
           </tbody>
         </table>
@@ -185,9 +214,8 @@ class PokemonList extends Component {
           isModal={true}
           size="large"
           overlayStyle={{'backgroundColor': 'rgba(33,10,10,.45)'}} >
-          <h1>#{ pokemon.dexNumber } { pokemon.species }</h1>
-          <PokemonGameData pokemon={pokemon} pokeballs={pokeballs} />
-          <button className="button" type="button" onClick={() => this.showModal(false)} >
+          <PokemonGameData tree={evolutionTree} pokeballs={pokeballs} />
+          <button className="button" type="button" onClick={() => this.showModal(false)}>
               Close
           </button>
         </Modal>

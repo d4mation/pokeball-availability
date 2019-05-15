@@ -32,37 +32,47 @@ const gameOrder = [
   'letsgoeevee',
 ];
 
-const PokemonEntry = ({ pokemon, pokeballs, onClick }) => (
-  <tr className="pokemon-entry" id={'pokemon-' + pokemon.dexNumber}>
+const PokemonEntry = ({ tree, pokeballs, onClick }) => (
+
+  <tr className="pokemon-entry" id={'pokemon-' + tree[0].dexNumber}>
     <td>
-      <a onClick={onClick} href={pokemon.dexNumber}>
-        #{pokemon.dexNumber} {pokemon.species}
+      <a onClick={onClick} href={tree[0].dexNumber}>
+        #{tree[0].dexNumber} {tree[0].species}
       </a>
     </td>
       { pokeballs.map( ( pokeball ) => {
 
         var available = false;
-        for ( var gameIndex in gameOrder ) {
 
-          let game = gameOrder[ gameIndex ];
+        for ( var pokemonIndex in tree ) {
 
-          if ( typeof pokemon[ game ] !== 'undefined' && 
-            typeof pokemon[ game ].pokeballs !== 'undefined' && 
-            pokemon[ game ].pokeballs.indexOf( pokeball ) >= 0 ) {
-              available = true;
-              break;
+          var pokemon = tree[ pokemonIndex ];
+        
+          for ( var gameIndex in gameOrder ) {
+
+            let game = gameOrder[ gameIndex ];
+
+            if ( typeof pokemon[ game ] !== 'undefined' && 
+              typeof pokemon[ game ].pokeballs !== 'undefined' && 
+              pokemon[ game ].pokeballs.indexOf( pokeball ) >= 0 ) {
+                available = true;
+                break;
+            }
+
           }
+
+          if ( available ) break;
 
         }
 
-        return <td className={pokeball + ' pokeball-available'} key={pokemon.dexNumber + '-' + pokeball}>{ ( available ) ? 1 : 0 }</td>
+        return <td className={pokeball + ' pokeball-available'} key={tree[0].dexNumber + '-' + pokeball}>{ ( available ) ? 1 : 0 }</td>
 
       } ) }
   </tr>
 );
 
 PokemonEntry.propTypes = {
-  pokemon: PropTypes.object.isRequired,
+  tree: PropTypes.array.isRequired,
 };
 
 export default PokemonEntry;
