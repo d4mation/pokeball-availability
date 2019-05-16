@@ -19,8 +19,8 @@ const PokemonGameData = ({ tree, pokeballs, gameOrder }) => (
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        { pokeballs.map( ( pokeball ) => {
-                            return <th key={'pokemon-game-data-pokeball-' + pokeball}><img src={'/dist/images/' + pokeball + '.png' } alt={pokeball} /></th>
+                        { Object.keys( pokeballs ).map( ( pokeball ) => {
+                            return <th key={'pokemon-game-data-pokeball-' + pokeball}><img src={'/dist/images/' + pokeball + '.png' } alt={pokeballs[ pokeball ]} title={pokeballs[ pokeball ]} /></th>
                         } ) }
                     </tr>
                 </thead>
@@ -31,7 +31,7 @@ const PokemonGameData = ({ tree, pokeballs, gameOrder }) => (
 
                             <td>{gameOrder[ gameIndex ]}</td>
 
-                            { pokeballs.map( ( pokeball ) => {
+                            { Object.keys( pokeballs ).map( ( pokeball ) => {
 
                                 var catchable = false;
 
@@ -70,6 +70,8 @@ const PokemonGameData = ({ tree, pokeballs, gameOrder }) => (
 
 PokemonGameData.propTypes = {
   tree: PropTypes.array.isRequired,
+  pokeballs: PropTypes.object.isRequired,
+  gameOrder: PropTypes.object.isRequired,
 };
 
 export default PokemonGameData;

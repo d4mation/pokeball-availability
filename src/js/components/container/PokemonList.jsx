@@ -10,33 +10,33 @@ import Modal from "react-foundation-modal";
 import pokemonData from '../../pokeball-availability.json';
 import { type } from "os";
 
-const pokeballs = [
-  'pokeball',
-  'greatball',
-  'ultraball',
-  'masterball',
-  'premierball',
-  'repeatball',
-  'timerball',
-  'nestball',
-  'netball',
-  'diveball',
-  'luxuryball',
-  'healball',
-  'quickball',
-  'duskball',
-  'levelball',
-  'lureball',
-  'moonball',
-  'friendball',
-  'loveball',
-  'heavyball',
-  'fastball',
-	'safariball',
-	'sportball',
-	'dreamball',
-	'beastball',
-];
+const pokeballs = {
+  'pokeball': 'Poké Ball',
+  'greatball': 'Great Ball',
+  'ultraball': 'Ultra Ball',
+  'masterball': 'Master Ball',
+  'premierball': 'Premier Ball',
+  'repeatball': 'Repeat Ball',
+  'timerball': 'Timer Ball',
+  'nestball': 'Nest Ball',
+  'netball': 'Net Ball',
+  'diveball': 'Dive Ball',
+  'luxuryball': 'Luxury Ball',
+  'healball': 'Heal Ball',
+  'quickball': 'Quick Ball',
+  'duskball': 'Dusk Ball',
+  'levelball': 'Level Ball',
+  'lureball': 'Lure Ball',
+  'moonball': 'Moon Ball',
+  'friendball': 'Friend Ball',
+  'loveball': 'Love Ball',
+  'heavyball': 'Heavy Ball',
+  'fastball': 'Fast Ball',
+	'safariball': 'Safari Ball',
+	'sportball': 'Sport Ball',
+	'dreamball': 'Dream Ball',
+	'beastball': 'Beast Ball',
+};
 
 const gameOrder = {
   'ruby': 'Ruby',
@@ -228,16 +228,16 @@ class PokemonList extends Component {
 
       <div id="pokemon-list">
         <PokemonFilter search={search} onChange={this.handleStringChange} />
-        <label>Click the Pokéballs in the table header to filter by specific Pokéballs.</label>
+        <label>Click the Poké Balls in the table header to filter by specific Poké Balls.</label>
         <table>
           <thead>
               <tr>
                 <th>&nbsp;</th>
-                { pokeballs.map( ( pokeball ) => {
+                { Object.keys( pokeballs ).map( ( pokeball ) => {
 
                   let className = ( selectedPokeballs.indexOf( pokeball ) >= 0 ) ? 'selected' : '';
 
-                  return <th className={className} key={pokeball + '-filter'}><PokeballFilter pokeball={pokeball} onChange={this.handleArrayChange} /></th>
+                  return <th className={className} key={pokeball + '-filter'}><PokeballFilter pokeballs={pokeballs} pokeball={pokeball} onChange={this.handleArrayChange} /></th>
                 } ) }
               </tr>
           </thead>

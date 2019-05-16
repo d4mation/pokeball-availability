@@ -9,7 +9,7 @@ const PokemonEntry = ({ tree, pokeballs, gameOrder, onClick }) => (
         #{tree[0].dexNumber} {tree[0].species}
       </a>
     </td>
-      { pokeballs.map( ( pokeball ) => {
+      { Object.keys( pokeballs ).map( ( pokeball ) => {
 
         var available = false;
 
@@ -40,6 +40,9 @@ const PokemonEntry = ({ tree, pokeballs, gameOrder, onClick }) => (
 
 PokemonEntry.propTypes = {
   tree: PropTypes.array.isRequired,
+  pokeballs: PropTypes.object.isRequired,
+  gameOrder: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default PokemonEntry;
