@@ -46,7 +46,7 @@ const PokemonGameData = ({ tree, pokeballs }) => (
                     <tr>
                         <th>&nbsp;</th>
                         { pokeballs.map( ( pokeball ) => {
-                            return <th key={'pokemon-game-data-pokeball-' + pokeball}>1</th>
+                            return <th key={'pokemon-game-data-pokeball-' + pokeball}><img src={'/dist/images/' + pokeball + '.png' } alt={pokeball} /></th>
                         } ) }
                     </tr>
                 </thead>
@@ -76,10 +76,9 @@ const PokemonGameData = ({ tree, pokeballs }) => (
 
                                 return <td key={game + '-' + pokemon.dexNumber + '-' + pokeball}>
 
-                                    { ( notes ) ? <span data-tip data-for={game + '-' + pokemon.dexNumber + '-notes'}>{ ( catchable ) ? 1 + '*' : 0 }</span> : ( catchable ) ? 1 : 0 }
+                                    { ( notes ) ? ( ( catchable ) ? <span data-tip data-for={game + '-' + pokemon.dexNumber + '-notes'} className="fas fa-check"></span> : <span className="fas fa-times"></span> ) : ( catchable ) ? <span className="fas fa-check"></span> : <span className="fas fa-times"></span> }
 
                                     { ( notes ) ? <ToolTip id={game + '-' + pokemon.dexNumber + '-notes'}><span>{pokemon[game].notes}</span></ToolTip> : '' }
-                                    
                                 </td>
 
                             } ) }

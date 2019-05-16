@@ -2736,7 +2736,7 @@ ul.no-bullet, ol.no-bullet {
     display: none !important; }
   table.show-for-print {
     display: table !important; }
-  thead.show-for-print {
+  thead.show-for-print, table thead th.show-for-print {
     display: table-header-group !important; }
   tbody.show-for-print {
     display: table-row-group !important; }
@@ -2761,7 +2761,7 @@ ul.no-bullet, ol.no-bullet {
   blockquote {
     border: 1px solid #8a8a8a;
     page-break-inside: avoid; }
-  thead {
+  thead, table thead th {
     display: table-header-group; }
   tr,
   img {
@@ -4979,7 +4979,7 @@ table {
   width: 100%;
   margin-bottom: 1rem;
   border-radius: 0; }
-  thead,
+  thead, table thead th,
   tbody,
   tfoot {
     border: 1px solid #f1f1f1;
@@ -4987,17 +4987,18 @@ table {
   caption {
     padding: 0.5rem 0.625rem 0.625rem;
     font-weight: bold; }
-  thead {
+  thead, table thead th {
     background: #f8f8f8;
     color: #0a0a0a; }
   tfoot {
     background: #f1f1f1;
     color: #0a0a0a; }
-  thead tr,
+  thead tr, table thead th tr,
   tfoot tr {
     background: transparent; }
-  thead th,
+  thead th, table thead th th,
   thead td,
+  table thead th td,
   tfoot th,
   tfoot td {
     padding: 0.5rem 0.625rem 0.625rem;
@@ -5017,7 +5018,7 @@ table {
       background-color: #fefefe; }
 
 @media screen and (max-width: 63.99875em) {
-  table.stack thead {
+  table.stack thead, table.stack thead th {
     display: none; }
   table.stack tfoot {
     display: none; }
@@ -5541,8 +5542,20 @@ a.thumbnail {
   .large-flex-dir-column-reverse {
     flex-direction: column-reverse; } }
 
-html {
-  background: green; }
+table thead th {
+  position: sticky;
+  top: 0;
+  text-align: center; }
+
+table tbody td:not(:first-child) {
+  text-align: center; }
+
+.reveal-overlay {
+  text-align: center; }
+
+.reveal {
+  display: inline-table !important;
+  text-align: initial; }
 
 
 /*# sourceMappingURL=app.css.map*/

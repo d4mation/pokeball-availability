@@ -65,7 +65,7 @@ const PokemonEntry = ({ tree, pokeballs, onClick }) => (
 
         }
 
-        return <td className={pokeball + ' pokeball-available'} key={tree[0].dexNumber + '-' + pokeball}>{ ( available ) ? 1 : 0 }</td>
+        return <td className={pokeball + ' pokeball-available'} key={tree[0].dexNumber + '-' + pokeball}>{ ( available ) ? <span className="fas fa-check"></span> : <span className="fas fa-times"></span> }</td>
 
       } ) }
   </tr>

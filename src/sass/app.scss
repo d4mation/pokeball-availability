@@ -80,3 +80,30 @@ table {
     text-align: initial;
 
 }
+
+span.fas[data-tip] {
+
+    position: relative;
+
+    &:after {
+
+        content: '';
+        border-bottom: rem-calc( 1.5 ) dotted #000000;
+        position: absolute;
+        bottom: rem-calc( -1.6 );
+        left: 0;
+        right: 0;
+
+    }
+
+    &:hover, &:focus {
+
+        &:after {
+
+            border-bottom: none;
+
+        }
+
+    }
+
+}

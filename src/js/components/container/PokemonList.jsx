@@ -206,7 +206,7 @@ class PokemonList extends Component {
               <tr>
                 <th>&nbsp;</th>
                 { pokeballs.map( ( pokeball ) => {
-                  return <th key={'main-view-pokeball-' + pokeball}>1</th>
+                  return <th key={'main-view-pokeball-' + pokeball}><img src={'/dist/images/' + pokeball + '.png' } alt={pokeball}/></th>
                 } ) }
               </tr>
           </thead>
