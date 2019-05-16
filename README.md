@@ -1,5 +1,24 @@
-License
--------
+# Poké Ball Availability Checker
+
+Poké Balls are a fun way to "customize" your Pokémon by having them in a Poké Ball that either matches thematically or by color or even if you just really like the way a certain one looks.
+
+However, depending on the game you're playing, certain combinations are not possible. This is especially true of Poké Balls like the [Apricorn Balls](https://bulbapedia.bulbagarden.net/wiki/Apricorn) first introduced in Generation 2 or Dream Balls which only were available for most Pokémon in the now shut down [Dream World](https://bulbapedia.bulbagarden.net/wiki/Pokémon_Dream_World) from Generation 5.
+
+I've compiled some data on which Pokémon are available in each game and within those games, which Poké Balls can be used to both:
+
+1. Provide an overall view of which Poké Balls are possible for an [Evolution Tree](https://bulbapedia.bulbagarden.net/wiki/List_of_Pokémon_by_evolution_family#Alola-based_evolution_families) if utilizing every possible game (Including Dream World)
+2. Help determine if you would need to, for instance, capture an evolved form of that Pokémon in a certain game in order to obtain one in that Poké Ball.
+
+## FAQs
+1. Why did you include the Master Ball? You cannot breed Pokémon into a Master Ball.
+  - I included the Master Ball because you can capture Pokémon in one without hacking. So if you were to [SOS Chain](https://bulbapedia.bulbagarden.net/wiki/SOS_Battle#Other_wild_Pok.C3.A9mon) or use another method to gaurantee some good IVs, a good nature, and improve shiny chance you could _technically_ get a "battle ready" Pokémon in a Master Ball without relying on breeding.
+2. Why are Pokémon collapsed to their base/baby Evolution?
+  - This is to show all available Poké Balls for that Evolution Tree, since you could breed into these other Poké Balls if you wanted. Once you click on their name, it will show the data for each Pokémon within that Evolution Tree.
+  - **NOTE** As pointed out above, this does not apply to the Master Ball. If the Pokémon is not catchable in a Master Ball, you're out of luck (I am not sure if this is ever the case, aside from Dream Radar).
+3. What about Alolan Forms?
+  - Alolan and Kantonian are considered the same for the purposes of this application, since by utilizing an Everstone you can breed the Kantonian Forms in Sun/Moon/Ultra Sun/Ultra Moon by having the Kantonian parent hold it. If it is a Pokémon like Exeggcute where the base evolution is Kantonian but it would normally evolve into an Alolan form, you will need to evolve it in Ultra Space (In Ultra Sun and Ultra Moon only). 
+
+## License
 
 The Poké Ball icons and Pokémon are © Nintendo/Creatures Inc./GAME FREAK Inc.
 
