@@ -1,38 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const gameOrder = [
-  'ruby',
-  'sapphire',
-  'firered',
-  'leafgreen',
-  'emerald',
-  'colosseum',
-  'xd',
-  'diamond',
-  'pearl',
-  'platinum',
-  'heartgold',
-  'soulsilver',
-  'black',
-  'white',
-  'black2',
-  'white2',
-  'dreamworld',
-  'dreamradar',
-  'x',
-  'y',
-  'omegaruby',
-  'alphasapphire',
-  'sun',
-  'moon',
-  'ultrasun',
-  'ultramoon',
-  'letsgopikachu',
-  'letsgoeevee',
-];
-
-const PokemonEntry = ({ tree, pokeballs, onClick }) => (
+const PokemonEntry = ({ tree, pokeballs, gameOrder, onClick }) => (
 
   <tr className="pokemon-entry" id={'pokemon-' + tree[0].dexNumber}>
     <td>
@@ -50,11 +19,9 @@ const PokemonEntry = ({ tree, pokeballs, onClick }) => (
         
           for ( var gameIndex in gameOrder ) {
 
-            let game = gameOrder[ gameIndex ];
-
-            if ( typeof pokemon[ game ] !== 'undefined' && 
-              typeof pokemon[ game ].pokeballs !== 'undefined' && 
-              pokemon[ game ].pokeballs.indexOf( pokeball ) >= 0 ) {
+            if ( typeof pokemon[ gameIndex ] !== 'undefined' && 
+              typeof pokemon[ gameIndex ].pokeballs !== 'undefined' && 
+              pokemon[ gameIndex ].pokeballs.indexOf( pokeball ) >= 0 ) {
                 available = true;
                 break;
             }

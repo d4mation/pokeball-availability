@@ -38,6 +38,36 @@ const pokeballs = [
 	'beastball',
 ];
 
+const gameOrder = {
+  'ruby': 'Ruby',
+	'sapphire': 'Sapphire',
+	'firered': 'FireRed',
+	'leafgreen': 'LeafGreen',
+	'emerald': 'Emerald',
+	'colosseum': 'Colosseum',
+	'xd': 'XD: Gale of Darkness',
+	'diamond': 'Diamond',
+	'pearl': 'Pearl',
+	'platinum': 'Platinum',
+	'heartgold': 'HeartGold',
+	'soulsilver': 'SoulSilver',
+	'black': 'Black',
+	'white': 'White',
+	'black2': 'Black 2',
+	'white2': 'White 2',
+	'dreamworld': 'Dream World',
+	'dreamradar': 'Dream Radar',
+	'x': 'X',
+	'y': 'Y',
+	'omegaruby': 'Omega Ruby',
+	'alphasapphire': 'Alpha Sapphire',
+	'sun': 'Sun',
+	'moon': 'Moon',
+	'ultrasun': 'Ultra Sun',
+	'ultramoon': 'Ultra Moon',
+	'letsgopikachu': "Let's Go, Pikachu!",
+	'letsgoeevee': "Let's Go, Eevee!",
+};
 class PokemonList extends Component {
   constructor() {
     super();
@@ -213,7 +243,7 @@ class PokemonList extends Component {
           </thead>
           <tbody>
               { filteredPokemonData.map( ( tree, index ) => {
-                return <PokemonEntry tree={tree} key={'main-view-index-' + index} pokeballs={pokeballs} onClick={this.updateViewedPokemon} />
+                return <PokemonEntry tree={tree} key={'main-view-index-' + index} pokeballs={pokeballs} onClick={this.updateViewedPokemon} gameOrder={gameOrder} />
               } ) }
           </tbody>
         </table>
@@ -225,7 +255,7 @@ class PokemonList extends Component {
           overlayStyle={ {
             'backgroundColor': 'rgba(33,10,10,.45)',
           } }>
-          <PokemonGameData tree={evolutionTree} pokeballs={pokeballs} />
+          <PokemonGameData tree={evolutionTree} pokeballs={pokeballs} gameOrder={gameOrder} />
           <button className="button" type="button" onClick={() => this.showModal(false)}>
               Close
           </button>
