@@ -11,12 +11,12 @@ I've compiled some data on which Pokémon are available in each game and within 
 
 ## FAQs
 1. Why did you include the Master Ball? You cannot breed Pokémon into a Master Ball.
-  - I included the Master Ball because you can capture Pokémon in one without hacking. So if you were to [SOS Chain](https://bulbapedia.bulbagarden.net/wiki/SOS_Battle#Other_wild_Pok.C3.A9mon) or use another method to gaurantee some good IVs, a good nature, and improve shiny chance you could _technically_ get a "battle ready" Pokémon in a Master Ball without relying on breeding.
+    - I included the Master Ball because you can capture Pokémon in one without hacking. So if you were to [SOS Chain](https://bulbapedia.bulbagarden.net/wiki/SOS_Battle#Other_wild_Pok.C3.A9mon) or use another method to gaurantee some good IVs, a good nature, and improve shiny chance you could _technically_ get a "battle ready" Pokémon in a Master Ball without relying on breeding.
 2. Why are Pokémon collapsed to their base/baby Evolution?
-  - This is to show all available Poké Balls for that Evolution Tree, since you could breed into these other Poké Balls if you wanted. Once you click on their name, it will show the data for each Pokémon within that Evolution Tree.
-  - **NOTE** As pointed out above, this does not apply to the Master Ball. If the Pokémon is not catchable in a Master Ball, you're out of luck (I am not sure if this is ever the case, aside from Dream Radar).
+    - This is to show all available Poké Balls for that Evolution Tree, since you could breed into these other Poké Balls if you wanted. Once you click on their name, it will show the data for each Pokémon within that Evolution Tree.
+    - **NOTE** As pointed out above, this does not apply to the Master Ball. If the Pokémon is not catchable in a Master Ball, you're out of luck (I am not sure if this is ever the case, aside from Dream Radar).
 3. What about Alolan Forms?
-  - Alolan and Kantonian are considered the same for the purposes of this application, since by utilizing an Everstone you can breed the Kantonian Forms in Sun/Moon/Ultra Sun/Ultra Moon by having the Kantonian parent hold it. If it is a Pokémon like Exeggcute where the base evolution is Kantonian but it would normally evolve into an Alolan form, you will need to evolve it in Ultra Space (In Ultra Sun and Ultra Moon only). 
+    - Alolan and Kantonian are considered the same for the purposes of this application, since by utilizing an Everstone you can breed the Kantonian Forms in Sun/Moon/Ultra Sun/Ultra Moon by having the Kantonian parent hold it. If it is a Pokémon like Exeggcute where the base evolution is Kantonian but it would normally evolve into an Alolan form, you will need to evolve it in Ultra Space (In Ultra Sun and Ultra Moon only). 
 
 ## License
 
