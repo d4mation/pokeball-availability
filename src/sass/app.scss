@@ -43,6 +43,40 @@
 // @include foundation-float-classes;
 @include foundation-flex-classes;
 
-html {
-    background: blue;
+table {
+
+    thead {
+
+        th {
+
+            position: sticky;
+            top: 0;
+
+            @extend thead;
+
+            text-align: center;
+
+        }
+
+    }
+
+    tbody {
+
+        td:not(:first-child) {
+            text-align: center;
+        }
+
+    }
+
+}
+
+.reveal-overlay {
+    text-align: center;
+}
+
+.reveal {
+
+    display: inline-table !important;
+    text-align: initial;
+
 }

@@ -202,10 +202,18 @@ class PokemonList extends Component {
         } ) }
         <PokemonFilter search={search} onChange={this.handleStringChange} />
         <table>
+          <thead>
+              <tr>
+                <th>&nbsp;</th>
+                { pokeballs.map( ( pokeball ) => {
+                  return <th key={'main-view-pokeball-' + pokeball}>1</th>
+                } ) }
+              </tr>
+          </thead>
           <tbody>
-            { filteredPokemonData.map( ( tree, index ) => {
-              return <PokemonEntry tree={tree} key={'main-view-index-' + index} pokeballs={pokeballs} onClick={this.updateViewedPokemon} />
-            } ) }
+              { filteredPokemonData.map( ( tree, index ) => {
+                return <PokemonEntry tree={tree} key={'main-view-index-' + index} pokeballs={pokeballs} onClick={this.updateViewedPokemon} />
+              } ) }
           </tbody>
         </table>
         <Modal 
@@ -213,7 +221,9 @@ class PokemonList extends Component {
           closeModal={this.showModal}
           isModal={true}
           size="large"
-          overlayStyle={{'backgroundColor': 'rgba(33,10,10,.45)'}} >
+          overlayStyle={ {
+            'backgroundColor': 'rgba(33,10,10,.45)',
+          } }>
           <PokemonGameData tree={evolutionTree} pokeballs={pokeballs} />
           <button className="button" type="button" onClick={() => this.showModal(false)}>
               Close

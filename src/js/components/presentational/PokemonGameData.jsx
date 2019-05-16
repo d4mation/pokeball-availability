@@ -42,6 +42,14 @@ const PokemonGameData = ({ tree, pokeballs }) => (
             return <div className="inner-container" key={'pokemon-game-data-inner-container-' + pokemon.dexNumber}><h1>#{pokemon.dexNumber} {pokemon.species}</h1>
 
             <table>
+                <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        { pokeballs.map( ( pokeball ) => {
+                            return <th key={'pokemon-game-data-pokeball-' + pokeball}>1</th>
+                        } ) }
+                    </tr>
+                </thead>
                 <tbody>
                     { gameOrder.map( ( game ) => {
 
