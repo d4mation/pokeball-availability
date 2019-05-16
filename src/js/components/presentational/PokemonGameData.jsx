@@ -20,7 +20,7 @@ const PokemonGameData = ({ tree, pokeballs, gameOrder }) => (
                     <tr>
                         <th>&nbsp;</th>
                         { Object.keys( pokeballs ).map( ( pokeball ) => {
-                            return <th key={'pokemon-game-data-pokeball-' + pokeball}><img src={'/dist/images/' + pokeball + '.png' } alt={pokeballs[ pokeball ]} title={pokeballs[ pokeball ]} /></th>
+                            return <th key={'pokemon-game-data-pokeball-' + pokeball}><img src={'dist/images/' + pokeball + '.png' } alt={pokeballs[ pokeball ]} title={pokeballs[ pokeball ]} /></th>
                         } ) }
                     </tr>
                 </thead>
