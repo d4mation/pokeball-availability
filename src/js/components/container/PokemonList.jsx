@@ -235,7 +235,7 @@ class PokemonList extends Component {
   }
 }
 
-const wrapper = document.getElementById( "create-article-form" );
+const wrapper = document.getElementById( "pokeball-availability-form" );
 wrapper ? ReactDOM.render(<PokemonList />, wrapper) : false;
 
 export default PokemonList;
