@@ -198,6 +198,7 @@ class PokemonList extends Component {
 
       <div id="pokemon-list">
         <PokemonFilter search={search} onChange={this.handleStringChange} />
+        <label>Click the Pokéballs in the table header to filter by specific Pokéballs.</label>
         <table>
           <thead>
               <tr>

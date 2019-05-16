@@ -39,7 +39,12 @@ const PokemonGameData = ({ tree, pokeballs }) => (
 
         { tree.map( ( pokemon ) => {
 
-            return <div className="inner-container" key={'pokemon-game-data-inner-container-' + pokemon.dexNumber}><h1>#{pokemon.dexNumber} {pokemon.species}</h1>
+            return <div className="inner-container" key={'pokemon-game-data-inner-container-' + pokemon.dexNumber}>
+                <h1>
+                    <a href={'https://bulbapedia.bulbagarden.net/wiki/' + encodeURIComponent( pokemon.species ) + '_(Pokémon)#Game_locations'} target="_blank">
+                        #{pokemon.dexNumber} {pokemon.species}
+                    </a>
+                </h1>
 
             <table>
                 <thead>
