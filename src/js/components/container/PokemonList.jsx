@@ -197,9 +197,11 @@ class PokemonList extends Component {
     return (
 
       <div id="pokemon-list">
-        { pokeballs.map( ( pokeball ) => {
-          return <PokeballFilter pokeball={pokeball} key={pokeball + '-filter'} onChange={this.handleArrayChange} />
-        } ) }
+        <fieldset class="fieldset">
+          { pokeballs.map( ( pokeball ) => {
+            return <PokeballFilter pokeball={pokeball} key={pokeball + '-filter'} onChange={this.handleArrayChange} />
+          } ) }
+        </fieldset>
         <PokemonFilter search={search} onChange={this.handleStringChange} />
         <table>
           <thead>
