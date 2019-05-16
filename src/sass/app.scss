@@ -56,6 +56,22 @@ table {
 
             text-align: center;
 
+            input[type="checkbox"] {
+                display: none;
+            }
+
+            label {
+
+                &:hover, &:focus {
+                    cursor: pointer;
+                }
+
+            }
+
+            &.selected {
+                background-color: green;
+            }
+
         }
 
     }
@@ -78,22 +94,6 @@ table {
 
     display: inline-table !important;
     text-align: initial;
-
-}
-
-fieldset {
-
-    label {
-
-        display: inline-block;
-        padding-right: rem-calc( 10 );
-
-        img {
-            width: rem-calc( 22 );
-            height: auto;
-        }
-
-    }
 
 }
 

@@ -43,7 +43,7 @@ class PokemonList extends Component {
     super();
 
     this.state = {
-      pokeball: [],
+      selectedPokeballs: [],
       search: '',
       modalIsOpen: false,
       viewedPokemon: 0,
@@ -102,7 +102,7 @@ class PokemonList extends Component {
 
   render() {
 
-    const { pokeball, search, viewedPokemon } = this.state;
+    const { selectedPokeballs, search, viewedPokemon } = this.state;
 
     var filteredPokemonData = pokemonData.filter(
       ( tree ) => {
@@ -123,7 +123,7 @@ class PokemonList extends Component {
     filteredPokemonData = filteredPokemonData.filter(
       ( tree ) => {
 
-        if ( pokeball.length == 0 ) {
+        if ( selectedPokeballs.length == 0 ) {
           return true;
         }
         else {
@@ -142,7 +142,7 @@ class PokemonList extends Component {
                 pokemon[ gameIndex ] !== false && 
                 typeof pokemon[ gameIndex ].pokeballs !== 'undefined' ) {
 
-                  let matches = pokemon[ gameIndex ].pokeballs.filter( value => pokeball.includes( value ) );
+                  let matches = pokemon[ gameIndex ].pokeballs.filter( value => selectedPokeballs.includes( value ) );
 
                   if ( matches.length > 0 ) {
                     found = found.concat( matches.filter(
@@ -150,7 +150,7 @@ class PokemonList extends Component {
                     ) );
                   }
 
-                  if ( found.length == pokeball.length ) {
+                  if ( found.length == selectedPokeballs.length ) {
                     break;
                   }
 
@@ -160,7 +160,7 @@ class PokemonList extends Component {
 
           }
 
-          if ( found.length == pokeball.length ) {
+          if ( found.length == selectedPokeballs.length ) {
             return true;
           }
 
@@ -197,18 +197,16 @@ class PokemonList extends Component {
     return (
 
       <div id="pokemon-list">
-        <fieldset class="fieldset">
-          { pokeballs.map( ( pokeball ) => {
-            return <PokeballFilter pokeball={pokeball} key={pokeball + '-filter'} onChange={this.handleArrayChange} />
-          } ) }
-        </fieldset>
         <PokemonFilter search={search} onChange={this.handleStringChange} />
         <table>
           <thead>
               <tr>
                 <th>&nbsp;</th>
                 { pokeballs.map( ( pokeball ) => {
-                  return <th key={'main-view-pokeball-' + pokeball}><img src={'/dist/images/' + pokeball + '.png' } alt={pokeball}/></th>
+
+                  let className = ( selectedPokeballs.indexOf( pokeball ) >= 0 ) ? 'selected' : '';
+
+                  return <th className={className} key={pokeball + '-filter'}><PokeballFilter pokeball={pokeball} onChange={this.handleArrayChange} /></th>
                 } ) }
               </tr>
           </thead>
