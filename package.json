@@ -9,7 +9,7 @@
     "dev": "webpack --mode development"
   },
   "author": "d4mation",
-  "license": "ISC",
+  "license": "GPLv3",
   "dependencies": {
     "foundation-sites": "^6.5.3",
     "jquery": "^3.4.1",
