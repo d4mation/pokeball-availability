@@ -8,6 +8,12 @@ import PokemonGameData from "../presentational/PokemonGameData.jsx";
 import Modal from "react-foundation-modal";
 
 import pokemonData from '../../pokeball-availability.json';
+import breedingExclusionsData from '../../cannot-breed-hidden-ability-to-new-pokeball.json';
+
+var breedingExclusions = breedingExclusionsData.map( ( pokemon ) => {
+  return pokemon.dexNumber;
+} );
+
 import { type } from "os";
 
 const pokeballs = {
@@ -243,7 +249,40 @@ class PokemonList extends Component {
           </thead>
           <tbody>
               { filteredPokemonData.map( ( tree, index ) => {
-                return <PokemonEntry tree={tree} key={'main-view-index-' + index} pokeballs={pokeballs} onClick={this.updateViewedPokemon} gameOrder={gameOrder} />
+
+                let hiddenAbilityPokeballs = [];
+
+                for ( let treeIndex in tree ) {
+
+                  let pokemon = tree[ treeIndex ];
+
+                  let perPokemonHiddenAbilityPokeballs = Object.keys( pokeballs ).filter( ( pokeball ) => {
+
+                    let hiddenAbility = false;
+
+                    for ( var game in gameOrder ) {
+
+                      if ( typeof pokemon[ game ] !== 'undefined' && 
+                        pokemon[ game ] !== false && 
+                        typeof pokemon[ game ].pokeballs !== 'undefined' && 
+                        typeof pokemon[ game ].pokeballs[ pokeball ] !== 'undefined' && 
+                        typeof pokemon[ game ].pokeballs[ pokeball ].hiddenAbility !== 'undefined' ) {
+                          hiddenAbility = true;
+                          break;
+                      }
+
+                    }
+                    
+                    return hiddenAbility;
+
+                  } );
+
+                  hiddenAbilityPokeballs = hiddenAbilityPokeballs.concat( perPokemonHiddenAbilityPokeballs );
+
+                }
+
+                return <PokemonEntry tree={tree} key={'main-view-index-' + index} pokeballs={pokeballs} onClick={this.updateViewedPokemon} gameOrder={gameOrder} hiddenAbilityPokeballs={hiddenAbilityPokeballs} breedingExclusions={breedingExclusions} />
+
               } ) }
           </tbody>
         </table>

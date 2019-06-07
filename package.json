@@ -16,6 +16,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-foundation-modal": "^0.1.5",
+    "react-html-parser": "^2.0.2",
     "react-tooltip": "^3.10.0",
     "what-input": "^5.2.1"
   },

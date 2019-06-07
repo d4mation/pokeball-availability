@@ -1,6 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ToolTip from "react-tooltip";
+import ReactHtmlParser from 'react-html-parser';
+
+const noHiddenAbilityGames = [
+    'ruby',
+	'sapphire',
+	'firered',
+	'leafgreen',
+	'emerald',
+	'colosseum',
+	'xd',
+	'diamond',
+	'pearl',
+	'platinum',
+	'heartgold',
+	'soulsilver',
+	'black',
+    'white',
+    'letsgopikachu',
+	'letsgoeevee',
+];
 
 const PokemonGameData = ({ tree, pokeballs, gameOrder }) => (
 
@@ -37,22 +57,35 @@ const PokemonGameData = ({ tree, pokeballs, gameOrder }) => (
 
                                 if ( typeof pokemon[ gameIndex ] !== 'undefined' && 
                                 typeof pokemon[ gameIndex ].pokeballs !== 'undefined' && 
-                                pokemon[ gameIndex ].pokeballs.indexOf( pokeball ) >= 0 ) {
+                                typeof pokemon[ gameIndex ].pokeballs[ pokeball ] !== 'undefined' ) {
                                     catchable = true;
                                 }
 
-                                var notes = false
+                                var notes = [];
+
+                                if ( catchable ) {
+
+                                    if ( noHiddenAbilityGames.indexOf( gameIndex ) < 0 && 
+                                        typeof pokemon[ gameIndex ].pokeballs[ pokeball ].hiddenAbility == 'undefined' ) {
+
+                                        notes.push( 'Cannot be captured with Hidden Ability in this Poké Ball' );
+                                        
+                                    }
+
+                                }
 
                                 if ( typeof pokemon[ gameIndex ] !== 'undefined' && 
                                 typeof pokemon[ gameIndex ].notes !== 'undefined' ) {
-                                    notes = pokemon[ gameIndex ].notes;
+                                    notes = notes.concat( pokemon[ gameIndex ].notes );
                                 }
+
+                                notes = notes.join( '<br />' );
 
                                 return <td key={gameIndex + '-' + pokemon.dexNumber + '-' + pokeball}>
 
-                                    { ( notes ) ? ( ( catchable ) ? <span data-tip data-for={gameIndex + '-' + pokemon.dexNumber + '-notes'} className="fas fa-check"></span> : <span className="fas fa-times"></span> ) : ( catchable ) ? <span className="fas fa-check"></span> : <span className="fas fa-times"></span> }
+                                    { ( notes.length > 0 ) ? ( ( catchable ) ? <span data-tip data-for={gameIndex + '-' + pokemon.dexNumber  + '-' + pokeball + '-notes'} className="fas fa-check"></span> : <span className="fas fa-times"></span> ) : ( catchable ) ? <span className="fas fa-check"></span> : <span className="fas fa-times"></span> }
 
-                                    { ( notes ) ? <ToolTip id={gameIndex + '-' + pokemon.dexNumber + '-notes'}><span>{pokemon[gameIndex].notes}</span></ToolTip> : '' }
+                                    { ( notes.length > 0 ) ? <ToolTip multiline={true} id={gameIndex + '-' + pokemon.dexNumber  + '-' + pokeball + '-notes'}><span>{ ReactHtmlParser( notes ) }</span></ToolTip> : '' }
                                 </td>
 
                             } ) }
