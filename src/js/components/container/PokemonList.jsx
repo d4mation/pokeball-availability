@@ -180,7 +180,7 @@ class PokemonList extends Component {
                 pokemon[ gameIndex ] !== false && 
                 typeof pokemon[ gameIndex ].pokeballs !== 'undefined' ) {
 
-                  let matches = pokemon[ gameIndex ].pokeballs.filter( value => selectedPokeballs.includes( value ) );
+                  let matches = Object.keys( pokemon[ gameIndex ].pokeballs ).filter( value => selectedPokeballs.includes( value ) );
 
                   if ( matches.length > 0 ) {
                     found = found.concat( matches.filter(
