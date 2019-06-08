@@ -74,6 +74,8 @@ const gameOrder = {
 	'letsgopikachu': "Let's Go, Pikachu!",
 	'letsgoeevee': "Let's Go, Eevee!",
 };
+
+var searchTimeout;
 class PokemonList extends Component {
   constructor() {
     super();
@@ -87,7 +89,7 @@ class PokemonList extends Component {
 
     this.handleArrayChange = this.handleArrayChange.bind( this );
 
-    this.handleStringChange = this.handleStringChange.bind( this );
+    this.updateSearch = this.updateSearch.bind( this );
 
     this.showModal = this.showModal.bind( this );
 
@@ -114,9 +116,9 @@ class PokemonList extends Component {
 
   }
 
-  handleStringChange( event ) {
+  updateSearch( event ) {
 
-    this.setState( { [ event.target.getAttribute( 'name' ) ]: event.target.value } );
+    this.setState( { [ 'search' ]: event } );
 
   }
 
@@ -233,7 +235,7 @@ class PokemonList extends Component {
     return (
 
       <div id="pokemon-list">
-        <PokemonFilter search={search} onChange={this.handleStringChange} />
+        <PokemonFilter search={search} onChange={this.updateSearch} />
         <label>Click the Poké Balls in the table header to filter by specific Poké Balls.</label>
         <table>
           <thead>
