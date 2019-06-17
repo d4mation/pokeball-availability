@@ -17,6 +17,8 @@ I've compiled some data on which Pokémon are available in each game and within 
     - **NOTE** As pointed out above, this does not apply to the Master Ball. If the Pokémon is not catchable in a Master Ball, you're out of luck (I am not sure if this is ever the case, aside from Dream Radar).
 3. What about Alolan Forms?
     - Alolan and Kantonian are considered the same for the purposes of this application, since by utilizing an Everstone you can breed the Kantonian Forms in Sun/Moon/Ultra Sun/Ultra Moon by having the Kantonian parent hold it. If it is a Pokémon like Exeggcute where the base evolution is Kantonian but it would normally evolve into an Alolan form, you will need to evolve it in Ultra Space (In Ultra Sun and Ultra Moon only). 
+4. Some Pokémon say that they are not available with their Hidden Ability, but I got one with their Hidden Ability via an online event. Why doesn't this chart account for this?
+    - I wanted this chart to only account for Hidden Abilities that are available in-game without any sort of event or time-exclusivity (With the exception of the Dream World, since that plays into whether or not the Dream Ball is possible). Some Pokémon, like Passimian, are available with their Hidden Ability via an online event and that Hidden Ability could be passed around by breeding. However, it is not possible to catch a Passimian in-game with their Hidden Ability as of Gen 7. This is why it shows that their Hidden Ability is not possible. This normally only applies to Legendaries, some Starter Pokémon, and then some outliers like Passimian and Oranguru so it often is not the case that a Hidden Ability is restricted to an event.
 
 ## License
 
