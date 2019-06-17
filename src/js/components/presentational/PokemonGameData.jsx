@@ -16,8 +16,6 @@ const noHiddenAbilityGames = [
 	'platinum',
 	'heartgold',
 	'soulsilver',
-	'black',
-    'white',
     'letsgopikachu',
 	'letsgoeevee',
 ];
@@ -70,6 +68,13 @@ const PokemonGameData = ({ tree, pokeballs, gameOrder }) => (
 
                                         notes.push( 'Cannot be captured with Hidden Ability in this Poké Ball' );
                                         
+                                    }
+                                    else if ( noHiddenAbilityGames.indexOf( gameIndex ) < 0 && 
+                                        typeof pokemon[ gameIndex ].pokeballs[ pokeball ].hiddenAbility !== 'undefined' && 
+                                        typeof pokemon[ gameIndex ].pokeballs[ pokeball ].hiddenAbility.notes !== 'undefined' ) {
+
+                                        notes = notes.concat( pokemon[ gameIndex ].pokeballs[ pokeball ].hiddenAbility.notes );
+
                                     }
 
                                 }
