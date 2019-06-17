@@ -30,7 +30,7 @@ const PokemonEntry = ({ tree, pokeballs, gameOrder, onClick, breedingExclusions,
                 // If this Pokemon cannot breed its Hidden Ability onto another Pokeball
                 // And this Pokeball is not one the Hidden Ability can naturally be caught in
                 // Show a note saying that the Hidden Ability cannot be obtained in that Pokeball for the Evolution Tree
-                if ( breedingExclusions.indexOf( pokemon.dexNumber ) > -1 && 
+                if ( typeof breedingExclusions[ pokemon.dexNumber ] !== 'undefined' && 
                 hiddenAbilityPokeballs.indexOf( pokeball ) < 0 ) {
 
                   showHiddenAbilityWarning = true;
@@ -63,7 +63,7 @@ PokemonEntry.propTypes = {
   pokeballs: PropTypes.object.isRequired,
   gameOrder: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
-  breedingExclusions: PropTypes.array.isRequired,
+  breedingExclusions: PropTypes.object.isRequired,
 };
 
 export default PokemonEntry;

@@ -8,11 +8,7 @@ import PokemonGameData from "../presentational/PokemonGameData.jsx";
 import Modal from "react-foundation-modal";
 
 import pokemonData from '../../pokeball-availability.json';
-import breedingExclusionsData from '../../cannot-breed-hidden-ability-to-new-pokeball.json';
-
-var breedingExclusions = breedingExclusionsData.map( ( pokemon ) => {
-  return pokemon.dexNumber;
-} );
+import breedingExclusions from '../../cannot-breed-hidden-ability-to-new-pokeball.json';
 
 import { type } from "os";
 
