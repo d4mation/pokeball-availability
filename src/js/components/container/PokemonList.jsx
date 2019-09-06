@@ -9,6 +9,7 @@ import Modal from "react-foundation-modal";
 
 import pokemonData from '../../pokeball-availability.json';
 import breedingExclusions from '../../cannot-breed-hidden-ability-to-new-pokeball.json';
+import pokemonWithoutHiddenAbilities from '../../pokemon-without-hidden-abilities.json';
 
 import { type } from "os";
 
@@ -279,7 +280,7 @@ class PokemonList extends Component {
 
                 }
 
-                return <PokemonEntry tree={tree} key={'main-view-index-' + index} pokeballs={pokeballs} onClick={this.updateViewedPokemon} gameOrder={gameOrder} hiddenAbilityPokeballs={hiddenAbilityPokeballs} breedingExclusions={breedingExclusions} />
+                return <PokemonEntry tree={tree} key={'main-view-index-' + index} pokeballs={pokeballs} onClick={this.updateViewedPokemon} gameOrder={gameOrder} hiddenAbilityPokeballs={hiddenAbilityPokeballs} breedingExclusions={breedingExclusions} pokemonWithoutHiddenAbilities={pokemonWithoutHiddenAbilities} />
 
               } ) }
           </tbody>

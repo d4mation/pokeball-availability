@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ToolTip from "react-tooltip";
 
-const PokemonEntry = ({ tree, pokeballs, gameOrder, onClick, breedingExclusions, hiddenAbilityPokeballs }) => (
+const PokemonEntry = ({ tree, pokeballs, gameOrder, onClick, breedingExclusions, hiddenAbilityPokeballs, pokemonWithoutHiddenAbilities }) => (
 
   <tr className="pokemon-entry" id={'pokemon-' + tree[0].dexNumber}>
     <td>
@@ -26,6 +26,11 @@ const PokemonEntry = ({ tree, pokeballs, gameOrder, onClick, breedingExclusions,
               typeof pokemon[ gameIndex ].pokeballs[ pokeball ] !== 'undefined' ) {
 
                 available = true;
+
+                // If this Pokemon does not have a Hidden Ability, then we do not need to continue
+                if ( typeof pokemonWithoutHiddenAbilities[ pokemon.dexNumber ] !== 'undefined' ) {
+                  break;
+                }
 
                 // If this Pokemon cannot breed its Hidden Ability onto another Pokeball
                 // And this Pokeball is not one the Hidden Ability can naturally be caught in
@@ -65,6 +70,7 @@ PokemonEntry.propTypes = {
   gameOrder: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
   breedingExclusions: PropTypes.object.isRequired,
+  pokemonWithoutHiddenAbilities: PropTypes.object.isRequired,
 };
 
 export default PokemonEntry;
