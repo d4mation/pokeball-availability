@@ -261,6 +261,8 @@ class PokemonList extends Component {
 
                     for ( var game in gameOrder ) {
 
+                      if ( game == 'letsgopikachu' || game == 'letsgoeevee' ) continue;
+
                       if ( typeof pokemon[ game ] !== 'undefined' && 
                         pokemon[ game ] !== false && 
                         typeof pokemon[ game ].pokeballs !== 'undefined' && 
