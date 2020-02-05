@@ -17,7 +17,9 @@ const noHiddenAbilityGames = [
 	'heartgold',
 	'soulsilver',
     'letsgopikachu',
-	'letsgoeevee',
+    'letsgoeevee',
+    'sword',
+    'shield',
 ];
 
 const PokemonGameData = ({ tree, pokeballs, gameOrder }) => (

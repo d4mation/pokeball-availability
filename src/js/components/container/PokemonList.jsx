@@ -69,7 +69,9 @@ const gameOrder = {
 	'ultrasun': 'Ultra Sun',
 	'ultramoon': 'Ultra Moon',
 	'letsgopikachu': "Let's Go, Pikachu!",
-	'letsgoeevee': "Let's Go, Eevee!",
+  'letsgoeevee': "Let's Go, Eevee!",
+  'sword': 'Sword',
+  'shield': 'Shield',
 };
 
 var searchTimeout;
