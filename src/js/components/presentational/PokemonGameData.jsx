@@ -55,13 +55,24 @@ const PokemonGameData = ({ tree, pokeballs, gameOrder }) => (
 
                                 var catchable = false;
 
+                                var notes = [];
+
                                 if ( typeof pokemon[ gameIndex ] !== 'undefined' && 
                                 typeof pokemon[ gameIndex ].pokeballs !== 'undefined' && 
                                 typeof pokemon[ gameIndex ].pokeballs[ pokeball ] !== 'undefined' ) {
-                                    catchable = true;
-                                }
 
-                                var notes = [];
+                                    catchable = true;
+
+                                    // This is currently only true in the case of the Heavy Ball bug in Sun/Moon
+                                    if ( typeof pokemon[ gameIndex ].pokeballs[ pokeball ].notes !== 'undefined' ) {
+
+                                        catchable = false;
+
+                                        notes = notes.concat( pokemon[ gameIndex ].pokeballs[ pokeball ].notes );                          
+
+                                    }
+
+                                }
 
                                 if ( catchable ) {
 
@@ -90,7 +101,7 @@ const PokemonGameData = ({ tree, pokeballs, gameOrder }) => (
 
                                 return <td key={gameIndex + '-' + pokemon.dexNumber + '-' + pokeball}>
 
-                                    { ( notes.length > 0 ) ? ( ( catchable ) ? <span data-tip data-for={gameIndex + '-' + pokemon.dexNumber  + '-' + pokeball + '-notes'} className="fas fa-check"></span> : <span className="fas fa-times"></span> ) : ( catchable ) ? <span className="fas fa-check"></span> : <span className="fas fa-times"></span> }
+                                    { ( notes.length > 0 ) ? ( ( catchable ) ? <span data-tip data-for={gameIndex + '-' + pokemon.dexNumber  + '-' + pokeball + '-notes'} className="fas fa-check"></span> : <span data-tip data-for={gameIndex + '-' + pokemon.dexNumber  + '-' + pokeball + '-notes'} className="fas fa-times"></span> ) : ( catchable ) ? <span className="fas fa-check"></span> : <span className="fas fa-times"></span> }
 
                                     { ( notes.length > 0 ) ? <ToolTip multiline={true} id={gameIndex + '-' + pokemon.dexNumber  + '-' + pokeball + '-notes'}><span>{ ReactHtmlParser( notes ) }</span></ToolTip> : '' }
                                 </td>

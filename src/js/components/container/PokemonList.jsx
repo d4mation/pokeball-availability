@@ -172,14 +172,21 @@ class PokemonList extends Component {
             var pokemon = tree[ pokemonIndex ];
 
             for ( var gameIndex in pokemon ) {
-
-              let game = pokemon[ gameIndex ];
               
               if ( typeof pokemon[ gameIndex ] !== 'undefined' && 
                 pokemon[ gameIndex ] !== false && 
                 typeof pokemon[ gameIndex ].pokeballs !== 'undefined' ) {
 
-                  let matches = Object.keys( pokemon[ gameIndex ].pokeballs ).filter( value => selectedPokeballs.includes( value ) );
+                  let matches = Object.keys( pokemon[ gameIndex ].pokeballs ).filter( ( value ) => {
+
+                    // Notes on a Pokeball are currently only used in the case of the Heavy Ball bug in Sun/Moon
+                    if ( typeof pokemon[ gameIndex ].pokeballs[ value ].notes !== 'undefined' ) {
+                      return false;
+                    }
+
+                    return selectedPokeballs.includes( value );
+
+                   } );
 
                   if ( matches.length > 0 ) {
                     found = found.concat( matches.filter(

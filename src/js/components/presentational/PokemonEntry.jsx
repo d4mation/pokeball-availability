@@ -25,7 +25,12 @@ const PokemonEntry = ({ tree, pokeballs, gameOrder, onClick, breedingExclusions,
               typeof pokemon[ gameIndex ].pokeballs !== 'undefined' && 
               typeof pokemon[ gameIndex ].pokeballs[ pokeball ] !== 'undefined' ) {
 
-                available = true;
+                // Notes on a Pokeball are only currently added in the case of the Heavy Ball bug in Sun/Moon
+                if ( typeof pokemon[ gameIndex ].pokeballs[ pokeball ].notes == 'undefined' ) {
+
+                    available = true;                      
+
+                }
 
                 // If this Pokemon does not have a Hidden Ability, then we do not need to continue
                 if ( typeof pokemonWithoutHiddenAbilities[ pokemon.dexNumber ] !== 'undefined' ) {
@@ -43,7 +48,7 @@ const PokemonEntry = ({ tree, pokeballs, gameOrder, onClick, breedingExclusions,
 
                 }
 
-                break;
+                if ( available ) break;
 
             }
 
